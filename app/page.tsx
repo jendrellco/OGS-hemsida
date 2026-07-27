@@ -115,6 +115,17 @@ export default function Home() {
         <p className="brand-line">All sport. <span>One place.</span></p>
       </section>
 
+      <section className="partner-section" aria-labelledby="partner-heading">
+        <div>
+          <p className="eyebrow">Rights holders and partners</p>
+          <h2 id="partner-heading">Want to team up<br />with <span>us?</span></h2>
+        </div>
+        <a href="mailto:info@openglobalsports.com">
+          <span>Email us</span>
+          <strong>info@openglobalsports.com</strong>
+        </a>
+      </section>
+
       <footer className="site-footer">
         <img src="/brand/ogs-wordmark-cream.png" alt="Open Global Sports" />
         <p>© 2026 Open Global Sports</p>
