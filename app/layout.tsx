@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Open Global Sports - Live sport on YouTube",
   description: "Watch international sport live and on demand with Open Global Sports.",
   icons: {
-    icon: "/favicon-padded.png?v=2",
-    shortcut: "/favicon-padded.png?v=2",
+    icon: "/favicon-padded.png?v=3",
+    shortcut: "/favicon-padded.png?v=3",
   },
 };
 
