@@ -65,7 +65,7 @@ export default function Home() {
           <nav aria-label="Main navigation">
             <a href="#schedule">Schedule</a>
             <a href="#about">About</a>
-            <a href={scheduleData.channelUrl}>YouTube <span aria-hidden="true">↗</span></a>
+            <a href={scheduleData.channelUrl} target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
           </nav>
         </header>
 
@@ -122,7 +122,6 @@ export default function Home() {
         </div>
         <a href="mailto:info@openglobalsports.com">
           <span>Email us</span>
-          <strong>info@openglobalsports.com</strong>
         </a>
       </section>
 

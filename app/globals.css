@@ -40,6 +40,7 @@ h1 span, h2 span, .brand-line span { color: var(--citrus); }
 .event-card strong { color: var(--citrus); font: 700 clamp(48px, 4.6vw, 78px)/.9 "Bricolage", sans-serif; letter-spacing: -.05em; animation: reveal .55s .06s cubic-bezier(.2, .75, .25, 1) both; }
 
 .schedule-section { padding: clamp(90px, 12vw, 170px) clamp(24px, 6vw, 92px); background: var(--bone); color: var(--pine); display: grid; grid-template-columns: minmax(260px, .75fr) minmax(480px, 1.25fr); gap: clamp(60px, 9vw, 150px); }
+.schedule-section .eyebrow, .schedule-section h2 span { color: var(--forest); }
 .section-intro h2 { margin: 0; font: 720 clamp(60px, 6.8vw, 112px)/.9 "Bricolage", sans-serif; letter-spacing: -.055em; }
 .schedule-list { align-self: end; }
 .schedule-item { padding: 26px 0; display: grid; grid-template-columns: minmax(130px, .65fr) minmax(220px, 1.25fr) auto; align-items: center; gap: 24px; border-bottom: 1px solid rgba(15, 58, 49, .18); }
@@ -55,13 +56,12 @@ h1 span, h2 span, .brand-line span { color: var(--citrus); }
 .about-copy { max-width: 1040px; margin: 0; font: 690 clamp(44px, 6vw, 94px)/.97 "Bricolage", sans-serif; letter-spacing: -.045em; }
 .brand-line { margin: 70px 0 0; color: var(--bone); font: 680 20px/1 "Bricolage", sans-serif; }
 .partner-section { padding: clamp(86px, 10vw, 144px) clamp(24px, 6vw, 92px); background: var(--bone); color: var(--pine); display: grid; grid-template-columns: minmax(320px, 1fr) minmax(300px, .8fr); align-items: center; gap: clamp(60px, 10vw, 160px); }
-.partner-section .eyebrow { color: #58721f; }
+.partner-section .eyebrow { color: var(--forest); }
 .partner-section h2 { margin: 0; font: 710 clamp(58px, 6.3vw, 106px)/.9 "Bricolage", sans-serif; letter-spacing: -.052em; }
-.partner-section h2 span { color: #58721f; }
-.partner-section > a { width: min(100%, 540px); min-height: 0; padding: 20px 24px; border-radius: 16px; background: var(--forest); color: var(--bone); text-decoration: none; justify-self: end; display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: transform .25s ease, background .25s ease; }
+.partner-section h2 span { color: var(--forest); }
+.partner-section > a { width: auto; min-height: 0; padding: 20px 30px; border-radius: 16px; background: var(--forest); color: var(--bone); text-decoration: none; justify-self: end; display: inline-flex; align-items: center; justify-content: center; transition: transform .25s ease, background .25s ease; }
 .partner-section > a:hover { transform: translateY(-3px); background: var(--pine); }
 .partner-section > a span { color: var(--citrus); font: 650 12px/1 "Space", sans-serif; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-.partner-section > a strong { font: 680 clamp(16px, 1.45vw, 21px)/1.15 "Bricolage", sans-serif; overflow-wrap: anywhere; }
 .site-footer { padding: 38px clamp(24px, 6vw, 92px); background: var(--pine); display: flex; align-items: center; justify-content: space-between; color: var(--sage); font-size: 12px; }
 .site-footer img { width: 90px; height: auto; }
 .site-footer p { margin: 0; }
@@ -95,7 +95,7 @@ a:focus-visible { outline: 3px solid var(--citrus); outline-offset: 5px; border-
   .event-card { display: none; }
   .schedule-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
   .schedule-item a, .link-pending { margin-top: 4px; }
-  .partner-section > a { align-items: flex-start; flex-direction: column; gap: 10px; padding: 18px 20px; }
+  .partner-section > a { padding: 18px 26px; }
   .site-footer { align-items: flex-end; }
 }
 
