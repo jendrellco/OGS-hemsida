@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import scheduleData from "../content/schedule.json";
 
 type Mode = "live" | "upcoming" | "offline";
-type Event = { id: string; title: string; subtitle: string; start: string; end: string; youtubeUrl: string };
+type Event = { id: string; title: string; subtitle: string; start: string; end: string; timeLabel?: string; youtubeUrl: string };
 
 const events = [...scheduleData.events].sort(
   (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
@@ -16,6 +16,10 @@ function formatDate(value: string) {
 
 function formatTime(value: string) {
   return new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Stockholm", timeZoneName: "short" }).format(new Date(value));
+}
+
+function eventTime(event: Event) {
+  return event.timeLabel ?? formatTime(event.start);
 }
 
 export default function Home() {
@@ -78,14 +82,14 @@ export default function Home() {
               {mode === "upcoming" && <>The next race<br />starts <span>{formatDate(event.start)}.</span></>}
               {mode === "offline" && <>Great sport<br />keeps <span>moving.</span></>}
             </h1>
-            <p className="event-detail">{event.subtitle} · {formatDate(event.start)} · {formatTime(event.start)}</p>
+            <p className="event-detail">{event.subtitle} · {formatDate(event.start)} · {eventTime(event)}</p>
             <a className="primary-action" href={actionUrl}><b>{actionLabel}</b><span className="play" aria-hidden="true">▶</span></a>
           </div>
 
           <aside className="event-card" aria-label="Featured broadcast">
             <p>{mode === "live" ? "On air" : mode === "upcoming" ? "First start" : "Latest event"}</p>
             <strong>{mode === "live" ? "LIVE" : formatDate(event.start)}</strong>
-            <small>{mode === "offline" ? "Available on demand" : formatTime(event.start)}</small>
+            <small>{mode === "offline" ? "Available on demand" : eventTime(event)}</small>
           </aside>
         </div>
       </section>
@@ -101,7 +105,7 @@ export default function Home() {
             return (
               <article className="schedule-item" key={item.id}>
                 <time dateTime={item.start}>{formatDate(item.start)}</time>
-                <div><h3>{item.subtitle}</h3><p>{formatTime(item.start)}</p></div>
+                <div><h3>{item.subtitle}</h3><p>{eventTime(item)}</p></div>
                 {item.youtubeUrl ? <a href={item.youtubeUrl}>{isLive ? "Watch live" : "Open on YouTube"} <span aria-hidden="true">↗</span></a> : <span className="link-pending">YouTube link coming soon</span>}
               </article>
             );

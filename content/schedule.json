@@ -1,14 +1,31 @@
 {
   "channelUrl": "https://www.youtube.com/@OpenGlobalSports",
   "statusOverride": "auto",
-  "featuredEventId": "trollhattan-day-1",
+  "featuredEventId": "sprint-2026",
   "events": [
     {
-      "id": "trollhattan-day-1",
-      "title": "Running",
-      "subtitle": "Trollhättan - Day 1",
-      "start": "2026-08-22T14:00:00+02:00",
-      "end": "2026-08-28T17:00:00+02:00",
+      "id": "sprint-2026",
+      "title": "Roller skiing",
+      "subtitle": "Sprint 1.3 km",
+      "start": "2026-08-28T13:00:00+02:00",
+      "end": "2026-08-28T18:00:00+02:00",
+      "youtubeUrl": ""
+    },
+    {
+      "id": "alliansloppet-2026",
+      "title": "Roller skiing",
+      "subtitle": "Alliansloppet 48 km",
+      "start": "2026-08-29T12:15:00+02:00",
+      "end": "2026-08-29T17:00:00+02:00",
+      "youtubeUrl": ""
+    },
+    {
+      "id": "individual-start-15-km-2026",
+      "title": "Roller skiing",
+      "subtitle": "Individual start 15 km",
+      "start": "2026-08-30T12:00:00+02:00",
+      "end": "2026-08-30T17:00:00+02:00",
+      "timeLabel": "Time TBA",
       "youtubeUrl": ""
     }
   ]
