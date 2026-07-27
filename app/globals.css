@@ -97,7 +97,7 @@ a:focus-visible { outline: 3px solid var(--citrus); outline-offset: 5px; border-
   .schedule-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
   .schedule-item a, .link-pending { margin-top: 4px; }
   .partner-section > a { padding: 18px 26px; }
-  .site-footer { min-height: 0; height: auto; padding: 22px 24px max(22px, env(safe-area-inset-bottom)); align-items: center; }
+  .site-footer { box-sizing: border-box; height: calc(80px + env(safe-area-inset-bottom)); min-height: calc(80px + env(safe-area-inset-bottom)); max-height: calc(80px + env(safe-area-inset-bottom)); padding: 16px 24px calc(16px + env(safe-area-inset-bottom)); align-items: center; overflow: hidden; flex: none; }
   .site-footer img { width: 72px; }
 }
 
