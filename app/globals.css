@@ -57,7 +57,7 @@ h1 span, h2 span, .brand-line span { color: var(--citrus); }
 .brand-line { margin: 70px 0 0; color: var(--bone); font: 680 20px/1 "Bricolage", sans-serif; }
 .partner-section { padding: clamp(86px, 10vw, 144px) clamp(24px, 6vw, 92px); background: var(--bone); color: var(--pine); display: grid; grid-template-columns: minmax(320px, 1fr) minmax(300px, .8fr); align-items: center; gap: clamp(60px, 10vw, 160px); }
 .partner-section .eyebrow { color: var(--forest); }
-.partner-section h2 { margin: 0; font: 710 clamp(58px, 6.3vw, 106px)/.9 "Bricolage", sans-serif; letter-spacing: -.052em; }
+.partner-section h2 { margin: 0; font: 710 clamp(58px, 6.3vw, 106px)/.9 "Bricolage", sans-serif; font-kerning: normal; font-feature-settings: "kern" 1; letter-spacing: -.03em; }
 .partner-section h2 span { color: var(--forest); }
 .partner-section > a { width: auto; min-height: 0; padding: 20px 30px; border-radius: 16px; background: var(--forest); color: var(--bone); text-decoration: none; justify-self: end; display: inline-flex; align-items: center; justify-content: center; transition: transform .25s ease, background .25s ease; }
 .partner-section > a:hover { transform: translateY(-3px); background: var(--pine); }
