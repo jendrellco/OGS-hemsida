@@ -11,7 +11,7 @@ Schemat fungerar för både endagsevent och flerdagsevent. Lägg bara in de prog
 3. Klicka på pennsymbolen, `Edit this file`.
 4. Ändra de värden som behövs.
 5. Klicka på `Commit changes`.
-6. Publiceringen startar automatiskt när den är konfigurerad.
+6. Be Codex publicera ändringen. Automatisk publicering från GitHub är ännu inte inkopplad.
 
 ## Vad fälten betyder
 
@@ -68,3 +68,15 @@ Vid försening eller tekniska problem kan du tillfälligt använda:
 - Ta inte bort kommatecken mellan eventblock.
 - All publik text ska vara på engelska.
 - Lägg alltid YouTube-länken direkt till den schemalagda sändningen, inte bara till kanalsidan.
+
+## Om Codex inte är tillgängligt
+
+Efter att ändringen har sparats på GitHub kan sidan publiceras från servern med:
+
+```sh
+cd /var/www/ogs-hemsida
+git pull --ff-only origin main
+docker compose up -d --build
+```
+
+Webbplatsen finns på `https://openglobalsports.com`.
