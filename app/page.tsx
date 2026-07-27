@@ -65,7 +65,7 @@ export default function Home() {
           <nav aria-label="Main navigation">
             <a href="#schedule">Schedule</a>
             <a href="#about">About</a>
-            <a href={scheduleData.channelUrl}>YouTube <span aria-hidden="true">↗</span></a>
+            <a href={scheduleData.channelUrl} target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
           </nav>
         </header>
 
@@ -113,6 +113,16 @@ export default function Home() {
         <p className="eyebrow">Open Global Sports</p>
         <p className="about-copy">International sport, open to everyone. Live and on demand on YouTube.</p>
         <p className="brand-line">All sport. <span>One place.</span></p>
+      </section>
+
+      <section className="partner-section" aria-labelledby="partner-heading">
+        <div>
+          <p className="eyebrow">Rights holders and partners</p>
+          <h2 id="partner-heading">Want to team up<br />with <span>us?</span></h2>
+        </div>
+        <a href="mailto:info@openglobalsports.com">
+          <span>Email us</span>
+        </a>
       </section>
 
       <footer className="site-footer">
