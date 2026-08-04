@@ -67,6 +67,7 @@ export default function Home() {
             <img className="wordmark" src="/brand/ogs-wordmark-cream.png" alt="Open Global Sports" />
           </a>
           <nav aria-label="Main navigation">
+            <a href="/live">Live</a>
             <a href="#schedule">Schedule</a>
             <a href="#about">About</a>
             <a href={scheduleData.channelUrl} target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
