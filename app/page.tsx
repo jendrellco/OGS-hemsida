@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import scheduleData from "../content/schedule.json";
 
 type Mode = "live" | "upcoming" | "offline";
@@ -58,18 +58,24 @@ export default function Home() {
   const actionUrl = event.youtubeUrl || scheduleData.channelUrl;
   const actionLabel = mode === "live" ? "Watch on YouTube" : mode === "upcoming" ? "View schedule" : "Watch on demand";
 
+  function scrollToSection(event: MouseEvent<HTMLAnchorElement>, sectionId: string) {
+    event.preventDefault();
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+  }
+
   return (
     <main className={`site state-${mode}`}>
       <section className="masthead">
         <div className="signal-rings" aria-hidden="true" />
         <header className="site-header">
-          <a href="#top" aria-label="Open Global Sports home">
+          <a href="#top" aria-label="Open Global Sports home" onClick={(click) => scrollToSection(click, "top")}>
             <img className="wordmark" src="/brand/ogs-wordmark-cream.png" alt="Open Global Sports" />
           </a>
           <nav aria-label="Main navigation">
             <a href="/live">Live</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#about">About</a>
+            <a href="#schedule" onClick={(click) => scrollToSection(click, "schedule")}>Schedule</a>
+            <a href="#about" onClick={(click) => scrollToSection(click, "about")}>About</a>
             <a href={scheduleData.channelUrl} target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
           </nav>
         </header>

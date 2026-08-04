@@ -2,12 +2,15 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-type LiveCountdownProps = {
+type LiveEvent = {
+  id: string;
   start: string;
   end: string;
-  title: string;
-  dateLabel: string;
-  timeLabel: string;
+  subtitle: string;
+};
+
+type LiveCountdownProps = {
+  events: LiveEvent[];
   channelUrl: string;
 };
 
@@ -31,17 +34,30 @@ function getTimeLeft(start: number, now: number): TimeLeft {
   };
 }
 
-export default function LiveCountdown({
-  start,
-  end,
-  title,
-  dateLabel,
-  timeLabel,
-  channelUrl,
-}: LiveCountdownProps) {
+function formatDate(value: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "long",
+    timeZone: "Europe/Stockholm",
+  }).format(new Date(value));
+}
+
+function formatTime(value: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Europe/Stockholm",
+    timeZoneName: "short",
+  }).format(new Date(value));
+}
+
+export default function LiveCountdown({ events, channelUrl }: LiveCountdownProps) {
   const [now, setNow] = useState<number | null>(null);
-  const startTime = useMemo(() => new Date(start).getTime(), [start]);
-  const endTime = useMemo(() => new Date(end).getTime(), [end]);
+  const orderedEvents = useMemo(
+    () => [...events].sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
+    [events],
+  );
 
   useEffect(() => {
     const update = () => setNow(Date.now());
@@ -50,9 +66,17 @@ export default function LiveCountdown({
     return () => window.clearInterval(timer);
   }, []);
 
-  const isLive = now !== null && now >= startTime && now <= endTime;
-  const hasEnded = now !== null && now > endTime;
-  const timeLeft = now === null ? emptyTime : getTimeLeft(startTime, now);
+  const currentEvent = now === null ? null : orderedEvents.find(
+    (event) => now >= new Date(event.start).getTime() && now <= new Date(event.end).getTime(),
+  );
+  const nextEvent = now === null ? orderedEvents[0] : orderedEvents.find(
+    (event) => new Date(event.start).getTime() > now,
+  );
+  const event = currentEvent ?? nextEvent ?? orderedEvents[orderedEvents.length - 1];
+  const isLive = Boolean(currentEvent);
+  const hasEnded = now !== null && !currentEvent && !nextEvent;
+  const startTime = event ? new Date(event.start).getTime() : 0;
+  const timeLeft = now === null || !event ? emptyTime : getTimeLeft(startTime, now);
 
   return (
     <main className={`live-page${isLive ? " is-live" : ""}`}>
@@ -79,7 +103,7 @@ export default function LiveCountdown({
           {isLive ? (
             <>
               <h1>The race is<br /><span>live now.</span></h1>
-              <p className="live-summary">{title} · Live from Trollhättan</p>
+              <p className="live-summary">{event.subtitle} · Live from Trollhättan</p>
               <div className="player-placeholder">
                 <p>The live player will appear here.</p>
                 <a href={channelUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
@@ -107,7 +131,7 @@ export default function LiveCountdown({
                   </div>
                 ))}
               </div>
-              <p className="live-summary"><strong>{title}</strong><br />{dateLabel} · {timeLabel} · Trollhättan</p>
+              <p className="live-summary"><strong>{event.subtitle}</strong><br />{formatDate(event.start)} · {formatTime(event.start)} · Trollhättan</p>
             </>
           )}
         </div>
