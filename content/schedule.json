@@ -3,6 +3,13 @@
   "featuredEventId": "alliansloppet-2026",
   "events": [
     {
+      "id": "sprint-2026",
+      "title": "Roller skiing",
+      "subtitle": "Sprint 1.3 km",
+      "start": "2026-08-28T16:00:00+02:00",
+      "end": "2026-08-28T18:00:00+02:00"
+    },
+    {
       "id": "alliansloppet-2026",
       "title": "Roller skiing",
       "subtitle": "Alliansloppet 48 km",
@@ -16,12 +23,5 @@
       "start": "2026-08-30T12:00:00+02:00",
       "end": "2026-08-30T17:00:00+02:00"
     }, 
-    {
-      "id": "löpning-2026",
-      "title": "Running",
-      "subtitle": "Trailrunning",
-      "start": "2026-10-12T16:00:00+02:00",
-      "end": "2026-10-12T18:00:00+02:00"
-    }
   ]
 }
