@@ -12,7 +12,6 @@ type LiveEvent = {
 
 type LiveCountdownProps = {
   events: LiveEvent[];
-  channelUrl: string;
 };
 
 type TimeLeft = {
@@ -53,7 +52,7 @@ function formatTime(value: string) {
   }).format(new Date(value));
 }
 
-export default function LiveCountdown({ events, channelUrl }: LiveCountdownProps) {
+export default function LiveCountdown({ events }: LiveCountdownProps) {
   const [now, setNow] = useState<number | null>(null);
   const orderedEvents = useMemo(
     () => [...events].sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
@@ -90,9 +89,6 @@ export default function LiveCountdown({ events, channelUrl }: LiveCountdownProps
         <nav aria-label="Live page navigation">
           <a href="/">Home</a>
           <a href="/#schedule">Schedule</a>
-          <a href={channelUrl} target="_blank" rel="noopener noreferrer">
-            YouTube <span aria-hidden="true">↗</span>
-          </a>
         </nav>
       </header>
 
@@ -109,8 +105,7 @@ export default function LiveCountdown({ events, channelUrl }: LiveCountdownProps
           ) : hasEnded ? (
             <>
               <h1>Thanks for<br /><span>watching.</span></h1>
-              <p className="live-summary">Find the latest broadcasts on Open Global Sports.</p>
-              <a className="live-channel-link" href={channelUrl} target="_blank" rel="noopener noreferrer">Visit our YouTube channel <span aria-hidden="true">↗</span></a>
+              <p className="live-summary">New broadcasts will appear here when they are scheduled.</p>
             </>
           ) : (
             <>

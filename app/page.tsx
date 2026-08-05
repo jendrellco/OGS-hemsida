@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import scheduleData from "../content/schedule.json";
 
 type Mode = "live" | "upcoming" | "offline";
-type Event = { id: string; title: string; subtitle: string; start: string; end: string; timeLabel?: string; youtubeUrl: string };
+type Event = { id: string; title: string; subtitle: string; start: string; end: string; timeLabel?: string };
 
 const events = [...scheduleData.events].sort(
   (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
@@ -55,8 +55,7 @@ export default function Home() {
   }, [now, previewMode]);
 
   const { mode, event } = view;
-  const actionUrl = event.youtubeUrl || scheduleData.channelUrl;
-  const actionLabel = mode === "live" ? "Watch on YouTube" : mode === "upcoming" ? "View schedule" : "Watch on demand";
+  const actionLabel = mode === "live" ? "Watch live" : mode === "upcoming" ? "Go to live page" : "View broadcasts";
 
   function scrollToSection(event: MouseEvent<HTMLAnchorElement>, sectionId: string) {
     event.preventDefault();
@@ -76,7 +75,6 @@ export default function Home() {
             <a href="/live">Live</a>
             <a href="#schedule" onClick={(click) => scrollToSection(click, "schedule")}>Schedule</a>
             <a href="#about" onClick={(click) => scrollToSection(click, "about")}>About</a>
-            <a href={scheduleData.channelUrl} target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
           </nav>
         </header>
 
@@ -90,13 +88,13 @@ export default function Home() {
               {mode === "offline" && <>Great sport<br />keeps <span>moving.</span></>}
             </h1>
             <p className="event-detail">{event.subtitle} · {formatDate(event.start)} · {eventTime(event)}</p>
-            <a className="primary-action" href={actionUrl}><b>{actionLabel}</b><span className="play" aria-hidden="true">▶</span></a>
+            <a className="primary-action" href="/live"><b>{actionLabel}</b><span className="play" aria-hidden="true">▶</span></a>
           </div>
 
           <aside className="event-card" aria-label="Featured broadcast">
             <p>{mode === "live" ? "On air" : mode === "upcoming" ? "First start" : "Latest event"}</p>
             <strong>{mode === "live" ? "LIVE" : formatDate(event.start)}</strong>
-            <small>{mode === "offline" ? "Available on demand" : eventTime(event)}</small>
+            <small>{mode === "offline" ? "Available here" : eventTime(event)}</small>
           </aside>
         </div>
       </section>
@@ -112,17 +110,17 @@ export default function Home() {
             return (
               <article className="schedule-item" key={item.id}>
                 <time dateTime={item.start}>{formatDate(item.start)}</time>
-                <div><h3>{item.subtitle}</h3><p>{eventTime(item)}</p></div>
-                {item.youtubeUrl ? <a href={item.youtubeUrl}>{isLive ? "Watch live" : "Open on YouTube"} <span aria-hidden="true">↗</span></a> : <span className="link-pending">YouTube link coming soon</span>}
+                <div><h3>{item.subtitle}</h3><p>{eventTime(item)}{isLive && <strong className="schedule-live-status">Live now</strong>}</p></div>
               </article>
             );
           })}
+          <a className="schedule-live-link" href="/live"><b>Watch live</b><span className="play" aria-hidden="true">▶</span></a>
         </div>
       </section>
 
       <section className="about-section" id="about">
         <p className="eyebrow">Open Global Sports</p>
-        <p className="about-copy">International sport, open to everyone. Live and on demand on YouTube.</p>
+        <p className="about-copy">International sport, open to everyone. Live and on demand.</p>
         <p className="brand-line">All sport. <span>One place.</span></p>
       </section>
 

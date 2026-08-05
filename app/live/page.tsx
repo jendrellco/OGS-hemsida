@@ -11,7 +11,6 @@ export default function LivePage() {
   return (
     <LiveCountdown
       events={scheduleData.events}
-      channelUrl={scheduleData.channelUrl}
     />
   );
 }

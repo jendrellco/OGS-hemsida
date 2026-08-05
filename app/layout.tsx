@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Open Global Sports - Live sport on YouTube",
+  title: "Open Global Sports - Live international sport",
   description: "Watch international sport live and on demand with Open Global Sports.",
   icons: {
     icon: "/favicon-padded.png?v=3",
