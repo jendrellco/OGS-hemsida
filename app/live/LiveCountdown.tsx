@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import BoxCastPlayer from "./BoxCastPlayer";
 
 type LiveEvent = {
   id: string;
@@ -54,6 +53,7 @@ function formatTime(value: string) {
 
 export default function LiveCountdown({ events }: LiveCountdownProps) {
   const [now, setNow] = useState<number | null>(null);
+  const [previewLive, setPreviewLive] = useState(false);
   const orderedEvents = useMemo(
     () => [...events].sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()),
     [events],
@@ -63,7 +63,13 @@ export default function LiveCountdown({ events }: LiveCountdownProps) {
     const update = () => setNow(Date.now());
     update();
     const timer = window.setInterval(update, 1_000);
-    return () => window.clearInterval(timer);
+    const previewTimer = window.setTimeout(() => {
+      setPreviewLive(new URLSearchParams(window.location.search).get("preview") === "live");
+    }, 0);
+    return () => {
+      window.clearInterval(timer);
+      window.clearTimeout(previewTimer);
+    };
   }, []);
 
   const currentEvent = now === null ? null : orderedEvents.find(
@@ -72,9 +78,11 @@ export default function LiveCountdown({ events }: LiveCountdownProps) {
   const nextEvent = now === null ? orderedEvents[0] : orderedEvents.find(
     (event) => new Date(event.start).getTime() > now,
   );
-  const event = currentEvent ?? nextEvent ?? orderedEvents[orderedEvents.length - 1];
-  const isLive = Boolean(currentEvent);
-  const hasEnded = now !== null && !currentEvent && !nextEvent;
+  const event = previewLive
+    ? orderedEvents[0]
+    : currentEvent ?? nextEvent ?? orderedEvents[orderedEvents.length - 1];
+  const isLive = previewLive || Boolean(currentEvent);
+  const hasEnded = !previewLive && now !== null && !currentEvent && !nextEvent;
   const startTime = event ? new Date(event.start).getTime() : 0;
   const timeLeft = now === null || !event ? emptyTime : getTimeLeft(startTime, now);
 
@@ -95,20 +103,24 @@ export default function LiveCountdown({ events }: LiveCountdownProps) {
       <section className="live-stage" aria-live="polite">
         <div className="live-stage-copy">
           <p className="live-status"><i aria-hidden="true" />{isLive ? "Live now" : hasEnded ? "Broadcast complete" : "Next broadcast"}</p>
-          <p className="live-discipline">FIS Roller Ski World Cup</p>
 
           {isLive ? (
             <>
-              <h1>The race is<br /><span>live now.</span></h1>
-              <p className="live-summary">{event.subtitle} · Live from Trollhättan</p>
+              <div className="live-event-copy">
+                <p className="live-discipline">FIS Roller Ski World Cup</p>
+                <h1>The race is <span>live now.</span></h1>
+                <p className="live-summary">{event.subtitle} · Live from Trollhättan</p>
+              </div>
             </>
           ) : hasEnded ? (
             <>
+              <p className="live-discipline">FIS Roller Ski World Cup</p>
               <h1>Thanks for<br /><span>watching.</span></h1>
               <p className="live-summary">New broadcasts will appear here when they are scheduled.</p>
             </>
           ) : (
             <>
+              <p className="live-discipline">FIS Roller Ski World Cup</p>
               <h1>Live in</h1>
               <div className="countdown" role="timer" aria-label={`${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes and ${timeLeft.seconds} seconds until the broadcast`}>
                 {([
@@ -127,7 +139,6 @@ export default function LiveCountdown({ events }: LiveCountdownProps) {
             </>
           )}
 
-          <BoxCastPlayer />
         </div>
       </section>
 

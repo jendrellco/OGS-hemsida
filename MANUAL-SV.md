@@ -68,7 +68,7 @@ Vid försening eller tekniska problem kan du tillfälligt använda:
 - All publik text ska vara på engelska.
 - Kontrollera alltid att `start` och `end` är sändningens tider, inte tävlingens officiella start- och sluttider.
 
-## Om Codex inte är tillgängligt
+## Publicera manuellt
 
 Efter att ändringen har sparats på GitHub öppnar du Terminal på datorn och ansluter till servern:
 
