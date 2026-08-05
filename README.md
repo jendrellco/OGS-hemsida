@@ -1,6 +1,6 @@
 # Open Global Sports
 
-Webbplatsen för Open Global Sports med landningssida, automatiskt sändningsschema och en livesida med BoxCast-spelare.
+Webbplatsen för Open Global Sports med landningssida, automatiskt sändningsschema och en separat livesida.
 
 ## Innehåll
 
