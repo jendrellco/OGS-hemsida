@@ -4,7 +4,7 @@ OGS:s publika landningssida. Sidan visar automatiskt nästa sändning, `Live now
 
 ## Redigera innehållet
 
-Läs [MANUAL-SV.md](MANUAL-SV.md) för en svensk steg-för-steg-guide som inte kräver ChatGPT eller utvecklingsverktyg.
+Läs [MANUAL-SV.md](MANUAL-SV.md) för en svensk steg-för-steg-guide.
 
 ## Teknisk information
 
