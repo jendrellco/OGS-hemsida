@@ -96,3 +96,5 @@ Raden för `ogs-hemsida-web-1` ska visa `Up`. Öppna därefter:
 - `https://openglobalsports.com/live`
 
 När bara `schedule.json` har ändrats behövs inga andra steg. Nedräkningen och nästa lopp uppdateras automatiskt från tiderna, och BoxCast-spelaren behöver inte ändras.
+
+Ladda om en redan öppen webbläsarflik efter publiceringen. Besökare som öppnar eller laddar om sidan får automatiskt den senaste versionen.
