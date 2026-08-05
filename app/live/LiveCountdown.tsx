@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import BoxCastPlayer from "./BoxCastPlayer";
 
 type LiveEvent = {
   id: string;
@@ -104,10 +105,6 @@ export default function LiveCountdown({ events, channelUrl }: LiveCountdownProps
             <>
               <h1>The race is<br /><span>live now.</span></h1>
               <p className="live-summary">{event.subtitle} · Live from Trollhättan</p>
-              <div className="player-placeholder">
-                <p>The live player will appear here.</p>
-                <a href={channelUrl} target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
-              </div>
             </>
           ) : hasEnded ? (
             <>
@@ -134,6 +131,8 @@ export default function LiveCountdown({ events, channelUrl }: LiveCountdownProps
               <p className="live-summary"><strong>{event.subtitle}</strong><br />{formatDate(event.start)} · {formatTime(event.start)} · Trollhättan</p>
             </>
           )}
+
+          <BoxCastPlayer />
         </div>
       </section>
 
