@@ -11,7 +11,7 @@ Schemat fungerar för både endagsevent och flerdagsevent. Lägg bara in de prog
 3. Klicka på pennsymbolen, `Edit this file`.
 4. Ändra de värden som behövs.
 5. Klicka på `Commit changes`.
-6. Be Codex publicera ändringen. Automatisk publicering från GitHub är ännu inte inkopplad.
+6. Publicera ändringen enligt instruktionen längst ned i denna manual. Automatisk publicering från GitHub är ännu inte inkopplad.
 
 ## Vad fälten betyder
 
@@ -70,7 +70,13 @@ Vid försening eller tekniska problem kan du tillfälligt använda:
 
 ## Om Codex inte är tillgängligt
 
-Efter att ändringen har sparats på GitHub kan sidan publiceras från servern med:
+Efter att ändringen har sparats på GitHub öppnar du Terminal på datorn och ansluter till servern:
+
+```sh
+ssh root@204.168.214.234
+```
+
+Kör sedan följande på servern:
 
 ```sh
 cd /var/www/ogs-hemsida
@@ -78,4 +84,15 @@ git pull --ff-only origin main
 docker compose up -d --build
 ```
 
-Webbplatsen finns på `https://openglobalsports.com`.
+Kontrollera att webbplatsen kör:
+
+```sh
+docker compose ps
+```
+
+Raden för `ogs-hemsida-web-1` ska visa `Up`. Öppna därefter:
+
+- `https://openglobalsports.com`
+- `https://openglobalsports.com/live`
+
+När bara `schedule.json` har ändrats behövs inga andra steg. Nedräkningen och nästa lopp uppdateras automatiskt från tiderna, och BoxCast-spelaren behöver inte ändras.
