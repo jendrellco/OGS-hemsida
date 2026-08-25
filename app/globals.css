@@ -132,7 +132,7 @@ a:focus-visible { outline: 3px solid var(--citrus); outline-offset: 5px; border-
 .live-event-copy .live-discipline { margin-bottom: 16px; }
 .live-event-copy h1 { max-width: 980px; font-size: clamp(54px, 6.5vw, 102px); }
 .live-event-copy .live-summary { margin-top: 20px; }
-.boxcast-player { width: min(100%, 1120px); min-height: 180px; margin-top: clamp(38px, 6vh, 68px); overflow: hidden; border-radius: 22px; background: var(--pine); box-shadow: 0 24px 70px rgba(3, 20, 17, .28), inset 0 0 0 1px rgba(175, 190, 180, .14); }
+.boxcast-player { width: min(100%, 1120px); min-height: 180px; margin: 0 0 clamp(38px, 6vh, 68px); overflow: hidden; border-radius: 22px; background: var(--pine); box-shadow: 0 24px 70px rgba(3, 20, 17, .28), inset 0 0 0 1px rgba(175, 190, 180, .14); }
 .boxcast-player > div:first-child { width: 100%; }
 .boxcast-error { margin: 0; padding: 32px; color: var(--bone); font: 520 15px/1.5 "Inter", sans-serif; text-align: center; }
 .live-footer { display: flex; justify-content: space-between; gap: 24px; color: var(--sage); font-size: 12px; }
@@ -157,7 +157,7 @@ a:focus-visible { outline: 3px solid var(--citrus); outline-offset: 5px; border-
   .live-event-copy .live-discipline { margin-bottom: 12px; }
   .live-event-copy h1 { font-size: clamp(42px, 13vw, 62px); line-height: .93; }
   .live-event-copy .live-summary { margin-top: 16px; }
-  .boxcast-player { margin-top: 36px; border-radius: 14px; }
+  .boxcast-player { margin-bottom: 32px; border-radius: 14px; }
   .live-footer { align-items: flex-end; }
   .live-footer p:first-child { max-width: 150px; }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import BoxCastPlayer from "./BoxCastPlayer";
 
 type LiveEvent = {
   id: string;
@@ -103,6 +104,8 @@ export default function LiveCountdown({ events }: LiveCountdownProps) {
       <section className="live-stage" aria-live="polite">
         <div className="live-stage-copy">
           <p className="live-status"><i aria-hidden="true" />{isLive ? "Live now" : hasEnded ? "Broadcast complete" : "Next broadcast"}</p>
+
+          <BoxCastPlayer />
 
           {isLive ? (
             <>

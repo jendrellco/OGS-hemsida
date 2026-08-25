@@ -51,11 +51,11 @@ test("renders the Open Global Sports home page", async () => {
   assert.match(html, /Broadcast schedule/i);
 });
 
-test("renders the live page without an embedded player", async () => {
+test("renders the live page with the BoxCast player mount point", async () => {
   const response = await render("/live");
   assert.equal(response.status, 200);
 
   const html = await response.text();
   assert.match(html, /<title>Live - Open Global Sports<\/title>/i);
-  assert.doesNotMatch(html, /boxcast-widget-alliansloppet/i);
+  assert.match(html, /boxcast-widget-alliansloppet/i);
 });
