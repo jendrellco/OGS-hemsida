@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const channelId = "alliansloppet-ddbph1rbi0dfiwkcoojp";
+const channelId = "trollhttan-action-week---alliansloppet-aylpo8yg3n5ifrk9lrph";
 const widgetId = `boxcast-widget-${channelId}`;
 const scriptUrl = "https://js.boxcast.com/v3.min.js";
 
@@ -19,9 +19,9 @@ declare global {
 }
 
 const options = {
-  showTitle: 0,
-  showDescription: 0,
-  showHighlights: 0,
+  showTitle: 1,
+  showDescription: 1,
+  showHighlights: 1,
   showRelated: false,
   defaultVideo: "next",
   playInline: false,
