@@ -57,5 +57,5 @@ test("renders the live page with the BoxCast player mount point", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Live - Open Global Sports<\/title>/i);
-  assert.match(html, /boxcast-widget-trollhttan-action-week---alliansloppet-aylpo8yg3n5ifrk9lrph/i);
+  assert.match(html, /boxcast-widget-trollhttan-action-week---15km-individual-gfibj8wzhvdo3uznnwbe/i);
 });

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const channelId = "trollhttan-action-week---alliansloppet-aylpo8yg3n5ifrk9lrph";
+const channelId = "trollhttan-action-week---15km-individual-gfibj8wzhvdo3uznnwbe";
 const widgetId = `boxcast-widget-${channelId}`;
 const scriptUrl = "https://js.boxcast.com/v3.min.js";
 
