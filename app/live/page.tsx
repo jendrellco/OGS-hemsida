@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import scheduleData from "../../content/schedule.json";
-import LiveCountdown from "./LiveCountdown";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Live - Open Global Sports",
-  description: "Watch the FIS Roller Ski World Cup live from Trollhättan on Open Global Sports.",
+  description: "Watch Open Global Sports broadcasts on YouTube.",
 };
 
 export default function LivePage() {
-  return (
-    <LiveCountdown
-      events={scheduleData.events}
-    />
-  );
+  redirect("https://www.youtube.com/@OpenGlobalSports");
 }

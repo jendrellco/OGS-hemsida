@@ -37,6 +37,7 @@ test("schedule contains valid, unique events", async () => {
     assert.ok(event.title);
     assert.ok(event.subtitle);
     assert.ok(Date.parse(event.start) < Date.parse(event.end));
+    assert.match(event.youtubeUrl, /^https:\/\/www\.youtube\.com\/watch\?v=/);
   }
 });
 
@@ -49,13 +50,13 @@ test("renders the Open Global Sports home page", async () => {
   assert.match(html, /<title>Open Global Sports - Live international sport<\/title>/i);
   assert.match(html, /Open Global Sports/i);
   assert.match(html, /Broadcast schedule/i);
+  assert.match(html, /youtube\.com\/watch\?v=LaM8j-P6xXc/i);
+  assert.match(html, /youtube\.com\/watch\?v=jXxvZDgw9sc/i);
+  assert.doesNotMatch(html, /href="\/live"/i);
 });
 
-test("renders the live page with the BoxCast player mount point", async () => {
+test("redirects the former live page to YouTube", async () => {
   const response = await render("/live");
-  assert.equal(response.status, 200);
-
-  const html = await response.text();
-  assert.match(html, /<title>Live - Open Global Sports<\/title>/i);
-  assert.match(html, /boxcast-widget-trollhttan-action-week---15km-individual-gfibj8wzhvdo3uznnwbe/i);
+  assert.ok(response.status >= 300 && response.status < 400);
+  assert.equal(response.headers.get("location"), "https://www.youtube.com/@OpenGlobalSports");
 });

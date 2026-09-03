@@ -20,8 +20,9 @@ Schemat fungerar för både endagsevent och flerdagsevent. Lägg bara in de prog
 - `subtitle` - lopp, dag eller disciplin.
 - `start` - starttid med datum och svensk tidszon.
 - `end` - tiden då live-läget ska avslutas.
+- `youtubeUrl` - den fullständiga länken till eventets YouTube-sändning.
 
-Alla sändningar visas på `openglobalsports.com/live`. BoxCast-spelaren är kopplad centralt, så du behöver inte lägga in någon separat videolänk för varje event.
+Startsidan länkar varje event direkt till dess YouTube-sändning. Den tidigare adressen `openglobalsports.com/live` skickar besökaren vidare till OGS YouTube-kanal.
 
 Exempel på svensk sommartid:
 
@@ -45,7 +46,8 @@ Kopiera ett helt eventblock, lägg ett kommatecken efter föregående block och 
   "title": "Event title",
   "subtitle": "Race or discipline",
   "start": "2026-09-12T14:00:00+02:00",
-  "end": "2026-09-12T17:00:00+02:00"
+  "end": "2026-09-12T17:00:00+02:00",
+  "youtubeUrl": "https://www.youtube.com/watch?v=VIDEO_ID"
 }
 ```
 
@@ -93,8 +95,8 @@ docker compose ps
 Raden för `ogs-hemsida-web-1` ska visa `Up`. Öppna därefter:
 
 - `https://openglobalsports.com`
-- `https://openglobalsports.com/live`
+- YouTube-länkarna från startsidan och schemat
 
-När bara `schedule.json` har ändrats behövs inga andra steg. Nedräkningen och nästa lopp uppdateras automatiskt från tiderna, och BoxCast-spelaren behöver inte ändras.
+När bara `schedule.json` har ändrats behövs inga andra steg. Nästa lopp och live-läge uppdateras automatiskt från tiderna, och knapparna använder eventets `youtubeUrl`.
 
 Ladda om en redan öppen webbläsarflik efter publiceringen. Besökare som öppnar eller laddar om sidan får automatiskt den senaste versionen.

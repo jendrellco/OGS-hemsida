@@ -4,7 +4,9 @@ import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import scheduleData from "../content/schedule.json";
 
 type Mode = "live" | "upcoming" | "offline";
-type Event = { id: string; title: string; subtitle: string; start: string; end: string; timeLabel?: string };
+type Event = { id: string; title: string; subtitle: string; start: string; end: string; youtubeUrl: string; timeLabel?: string };
+
+const youtubeChannelUrl = "https://www.youtube.com/@OpenGlobalSports";
 
 const events = [...scheduleData.events].sort(
   (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
@@ -55,7 +57,7 @@ export default function Home() {
   }, [now, previewMode]);
 
   const { mode, event } = view;
-  const actionLabel = mode === "live" ? "Watch live" : mode === "upcoming" ? "Go to live page" : "View broadcasts";
+  const actionLabel = mode === "live" ? "Watch live on YouTube" : "Watch on YouTube";
 
   function scrollToSection(event: MouseEvent<HTMLAnchorElement>, sectionId: string) {
     event.preventDefault();
@@ -72,9 +74,9 @@ export default function Home() {
             <img className="wordmark" src="/brand/ogs-wordmark-cream.png" alt="Open Global Sports" />
           </a>
           <nav aria-label="Main navigation">
-            <a href="/live">Live</a>
             <a href="#schedule" onClick={(click) => scrollToSection(click, "schedule")}>Schedule</a>
             <a href="#about" onClick={(click) => scrollToSection(click, "about")}>About</a>
+            <a href={youtubeChannelUrl} target="_blank" rel="noreferrer">YouTube <span>↗</span></a>
           </nav>
         </header>
 
@@ -88,13 +90,13 @@ export default function Home() {
               {mode === "offline" && <>Great sport<br />keeps <span>moving.</span></>}
             </h1>
             <p className="event-detail">{event.subtitle} · {formatDate(event.start)} · {eventTime(event)}</p>
-            <a className="primary-action" href="/live"><b>{actionLabel}</b><span className="play" aria-hidden="true">▶</span></a>
+            <a className="primary-action" href={event.youtubeUrl} target="_blank" rel="noreferrer"><b>{actionLabel}</b><span className="play" aria-hidden="true">▶</span></a>
           </div>
 
           <aside className="event-card" aria-label="Featured broadcast">
             <p>{mode === "live" ? "On air" : mode === "upcoming" ? "First start" : "Latest event"}</p>
             <strong>{mode === "live" ? "LIVE" : formatDate(event.start)}</strong>
-            <small>{mode === "offline" ? "Available here" : eventTime(event)}</small>
+            <small>{mode === "offline" ? "On YouTube" : eventTime(event)}</small>
           </aside>
         </div>
       </section>
@@ -111,10 +113,11 @@ export default function Home() {
               <article className="schedule-item" key={item.id}>
                 <time dateTime={item.start}>{formatDate(item.start)}</time>
                 <div><h3>{item.subtitle}</h3><p>{eventTime(item)}{isLive && <strong className="schedule-live-status">Live now</strong>}</p></div>
+                <a className="schedule-item-action" href={item.youtubeUrl} target="_blank" rel="noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
               </article>
             );
           })}
-          <a className="schedule-live-link" href="/live"><b>Watch live</b><span className="play" aria-hidden="true">▶</span></a>
+          <a className="schedule-live-link" href={youtubeChannelUrl} target="_blank" rel="noreferrer"><b>Open YouTube</b><span className="play" aria-hidden="true">▶</span></a>
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 # Open Global Sports
 
-Webbplatsen för Open Global Sports med landningssida, automatiskt sändningsschema och en separat livesida.
+Webbplatsen för Open Global Sports med landningssida och automatiskt sändningsschema som länkar till YouTube.
 
 ## Innehåll
 
@@ -32,4 +32,4 @@ Webbplatsen körs i Docker på OGS-servern. Fullständiga instruktioner finns i 
 
 ## Teknik
 
-Webbplatsen är byggd med React, TypeScript, Next.js-kompatibla komponenter och vinext. Livesändningen levereras via BoxCast.
+Webbplatsen är byggd med React, TypeScript, Next.js-kompatibla komponenter och vinext. Livesändningarna publiceras på YouTube.
