@@ -49,7 +49,9 @@ test("renders the Open Global Sports home page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Open Global Sports - Live international sport<\/title>/i);
   assert.match(html, /Open Global Sports/i);
-  assert.match(html, /Broadcast schedule/i);
+  assert.match(html, /Previous broadcasts/i);
+  assert.match(html, /Watch them\./i);
+  assert.match(html, /On demand\./i);
   assert.match(html, /youtube\.com\/watch\?v=LaM8j-P6xXc/i);
   assert.match(html, /youtube\.com\/watch\?v=jXxvZDgw9sc/i);
   assert.doesNotMatch(html, /href="\/live"/i);

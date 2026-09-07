@@ -103,8 +103,8 @@ export default function Home() {
 
       <section className="schedule-section" id="schedule">
         <div className="section-intro">
-          <p className="eyebrow">Broadcast schedule</p>
-          <h2>Live schedule.<br /><span>Every start.</span></h2>
+          <p className="eyebrow">Previous broadcasts</p>
+          <h2>Watch them.<br /><span>On demand.</span></h2>
         </div>
         <div className="schedule-list">
           {events.map((item) => {
@@ -117,7 +117,7 @@ export default function Home() {
               </article>
             );
           })}
-          <a className="schedule-live-link" href={youtubeChannelUrl} target="_blank" rel="noreferrer"><b>Open YouTube</b><span className="play" aria-hidden="true">▶</span></a>
+          <a className="schedule-live-link" href={youtubeChannelUrl} target="_blank" rel="noreferrer"><b>Watch on YouTube</b><span className="play" aria-hidden="true">▶</span></a>
         </div>
       </section>
 
