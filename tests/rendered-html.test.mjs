@@ -37,7 +37,7 @@ test("schedule contains valid, unique events", async () => {
     assert.ok(event.title);
     assert.ok(event.subtitle);
     assert.ok(Date.parse(event.start) < Date.parse(event.end));
-    assert.match(event.youtubeUrl, /^https:\/\/www\.youtube\.com\/watch\?v=/);
+    assert.match(event.youtubeUrl, /^https:\/\/www\.youtube\.com\/(watch\?v=|@OpenGlobalSports)/);
   }
 });
 
@@ -49,11 +49,14 @@ test("renders the Open Global Sports home page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Open Global Sports - Live international sport<\/title>/i);
   assert.match(html, /Open Global Sports/i);
-  assert.match(html, /Previous broadcasts/i);
-  assert.match(html, /Watch them\./i);
-  assert.match(html, /On demand\./i);
-  assert.match(html, /youtube\.com\/watch\?v=LaM8j-P6xXc/i);
-  assert.match(html, /youtube\.com\/watch\?v=jXxvZDgw9sc/i);
+  assert.match(html, /Broadcast schedule/i);
+  assert.match(html, /Live schedule\./i);
+  assert.match(html, /Every start\./i);
+  assert.match(html, /Swedish Cross-Country Skiing Premiere/i);
+  assert.match(html, /Sprint Classic/i);
+  assert.match(html, /10 km Classic/i);
+  assert.match(html, /10 km Free/i);
+  assert.match(html, /youtube\.com\/@OpenGlobalSports/i);
   assert.doesNotMatch(html, /href="\/live"/i);
 });
 

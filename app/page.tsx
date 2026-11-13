@@ -25,7 +25,7 @@ function eventTime(event: Event) {
 }
 
 export default function Home() {
-  const [now, setNow] = useState(0);
+  const [now, setNow] = useState(() => Date.now());
   const [previewMode, setPreviewMode] = useState<Mode | null>(null);
 
   useEffect(() => {
@@ -58,6 +58,9 @@ export default function Home() {
 
   const { mode, event } = view;
   const actionLabel = mode === "live" ? "Watch live on YouTube" : "Watch on YouTube";
+  const scheduledEvents = events.filter((item) => new Date(item.end).getTime() >= now);
+  const hasScheduledEvents = scheduledEvents.length > 0;
+  const visibleSchedule = hasScheduledEvents ? scheduledEvents : events;
 
   function scrollToSection(event: MouseEvent<HTMLAnchorElement>, sectionId: string) {
     event.preventDefault();
@@ -85,7 +88,7 @@ export default function Home() {
             <p className="status"><i aria-hidden="true" />{mode === "live" ? "Live now" : mode === "upcoming" ? "Next broadcast" : "On demand"}</p>
             <p className="eyebrow">{event.title}</p>
             <h1 key={`${mode}-${event.id}`}>
-              {mode === "live" && <>The world cup<br />is <span>live now.</span></>}
+              {mode === "live" && <>The race<br />is <span>live now.</span></>}
               {mode === "upcoming" && <>The next race<br />starts <span>{formatDate(event.start)}.</span></>}
               {mode === "offline" && <>Great sport<br />keeps <span>moving.</span></>}
             </h1>
@@ -103,17 +106,18 @@ export default function Home() {
 
       <section className="schedule-section" id="schedule">
         <div className="section-intro">
-          <p className="eyebrow">Previous broadcasts</p>
-          <h2>Watch them.<br /><span>On demand.</span></h2>
+          <p className="eyebrow">{hasScheduledEvents ? "Broadcast schedule" : "Previous broadcasts"}</p>
+          <h2>{hasScheduledEvents ? <>Live schedule.<br /><span>Every start.</span></> : <>Watch them.<br /><span>On demand.</span></>}</h2>
         </div>
         <div className="schedule-list">
-          {events.map((item) => {
+          {visibleSchedule.map((item) => {
             const isLive = now >= new Date(item.start).getTime() && now <= new Date(item.end).getTime();
+            const isUpcoming = now < new Date(item.start).getTime();
             return (
               <article className="schedule-item" key={item.id}>
                 <time dateTime={item.start}>{formatDate(item.start)}</time>
                 <div><h3>{item.subtitle}</h3><p>{eventTime(item)}{isLive && <strong className="schedule-live-status">Live now</strong>}</p></div>
-                <a className="schedule-item-action" href={item.youtubeUrl} target="_blank" rel="noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+                <a className="schedule-item-action" href={item.youtubeUrl} target="_blank" rel="noreferrer">{isLive ? "Watch live on YouTube" : isUpcoming ? "Go to YouTube" : "Watch on YouTube"} <span aria-hidden="true">↗</span></a>
               </article>
             );
           })}

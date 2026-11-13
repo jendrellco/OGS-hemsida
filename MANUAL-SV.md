@@ -22,6 +22,8 @@ Schemat fungerar för både endagsevent och flerdagsevent. Lägg bara in de prog
 - `end` - tiden då live-läget ska avslutas.
 - `youtubeUrl` - den fullständiga länken till eventets YouTube-sändning.
 
+Om en enskild sändningslänk ännu inte är skapad kan `youtubeUrl` tillfälligt peka på `https://www.youtube.com/@OpenGlobalSports`. Byt till den specifika `watch?v=`-länken före sändning så att tittaren kommer direkt till rätt video.
+
 Startsidan länkar varje event direkt till dess YouTube-sändning. Den tidigare adressen `openglobalsports.com/live` skickar besökaren vidare till OGS YouTube-kanal.
 
 Exempel på svensk sommartid:
