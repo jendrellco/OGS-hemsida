@@ -59,7 +59,7 @@ test("renders the Open Global Sports home page", async () => {
   assert.match(html, /10 km Freestyle/i);
   assert.match(html, /youtube\.com\/watch\?v=T8Sx_Pbv2ys/i);
   assert.match(html, /youtube\.com\/watch\?v=ulKDd7Chj8s/i);
-  assert.match(html, /youtube\.com\/watch\?v=m5SuCXDhC7Y/i);
+  assert.match(html, /youtube\.com\/watch\?v=m5SuCXDhc7Y/i);
   assert.match(html, /youtube\.com\/watch\?v=v8tyG93pfZk/i);
   assert.doesNotMatch(html, /href="\/live"/i);
 });
